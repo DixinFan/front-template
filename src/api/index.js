@@ -18,6 +18,7 @@ const apiRegistry = {
   user: {
     login: '/login',
     logout: { method: GET, url: '/logout' },
+    load: '/login/success',
   }
 }
 

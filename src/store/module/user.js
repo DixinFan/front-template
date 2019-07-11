@@ -1,40 +1,28 @@
-import {setToken, getToken} from '@/libs/util';
 import api from '@/api';
 
 export default {
   state: {
-    userRole: 0,
-    userName: '',
-    userId: '',
-    avatarImgPath: '',
-    token: getToken(),
-    access: '',
-    hasGetInfo: false,
+    userInfo: '',
     unreadCount: 0,
     messageUnreadList: [],
     messageReadedList: [],
     messageTrashList: [],
     messageContentStore: {}
   },
+  getters: {
+    hasGetInfo(state) {
+      return !!state.userInfo;
+    },
+    access(state) {
+      if (state.userInfo) {
+        return state.userInfo.accessList || [];
+      }
+      return [];
+    }
+  },
   mutations: {
-    setUserRole(state, role) {
-      state.userRole = role;
-    },
-    setUserId(state, id) {
-      state.userId = id
-    },
-    setUserName(state, name) {
-      state.userName = name
-    },
-    setAccess(state, access) {
-      state.access = access
-    },
-    setToken(state, token) {
-      state.token = token
-      setToken(token)
-    },
-    setHasGetInfo(state, status) {
-      state.hasGetInfo = status
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo;
     },
     setMessageCount(state, count) {
       state.unreadCount = count
@@ -59,23 +47,32 @@ export default {
     }
   },
   actions: {
+    loadUserInfo({state, commit}) {
+      return new Promise((resolve, reject) => {
+        if (state.userInfo) {
+          resolve;
+        }
+        api.user.load({}).then((data) => {
+          if (data) {
+            commit('setUserInfo', data);
+            resolve();
+          }
+          reject();
+        }).catch(error => {
+          console.log(error);
+          reject();
+        });
+      });
+    },
     // 登录
     handleLogin({commit}, {username, password}) {
       return  new Promise((resolve, reject) => {
         api.user.login({}, {params: {username, password}}).then((data) => {
           if (!data) {
-            // 登录失败 无用户信息
-            commit('setUserName', '');
-            commit('setAccess', []);
-            commit('setUserRole', 0);
-            commit('setHasGetInfo', false);
+            commit('setUserInfo', '');
             return reject();
           }
-          const {accessList, name, userRole} = data;
-          commit('setUserName', name);
-          commit('setAccess', accessList);
-          commit('setUserRole', userRole);
-          commit('setHasGetInfo', true);
+          commit('setUserInfo', data);
           resolve();
         })
       })
@@ -83,42 +80,14 @@ export default {
     // 退出登录
     handleLogOut({state, commit}) {
       return new Promise((resolve, reject) => {
-        api.user.logout().then(() => {
-          commit('setUserName', '');
-          commit('setAccess', []);
-          commit('setUserRole', 0);
-          commit('setHasGetInfo', false);
-          resolve()
-        }).catch(err => {
-          reject(err)
-        })
-        // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-        commit('setUserName', '');
-        commit('setAccess', []);
-        commit('setUserRole', 0);
-        commit('setHasGetInfo', false);
-        resolve()
+        api.user.logout().finally(() => {
+          commit('setUserInfo', '');
+          resolve();
+        });
       })
     },
-    // 获取用户相关信息
-    getUserInfo({state, commit}) {
-      return new Promise((resolve, reject) => {
-        try {
-          api.user.query({token: state.token}).then(res => {
-            const data = res.data
-            commit('setAvatar', data.avatar)
-            commit('setUserName', data.name)
-            commit('setUserId', data.user_id)
-            commit('setAccess', data.access)
-            commit('setHasGetInfo', true)
-            resolve(data)
-          }).catch(err => {
-            reject(err)
-          })
-        } catch (error) {
-          reject(error)
-        }
-      })
-    },
+    getUnreadMessageCount ({ state, commit}) {
+      return state.unreadCount;
+    }
   }
 }

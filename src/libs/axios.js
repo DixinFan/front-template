@@ -21,9 +21,11 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(res => {
       const { data, status } = res
-      const { code = -1, msg = '', data: jsonData } = data;
+      const { code = -1, msg = '', data: jsonData, showMsg = true } = data;
       if (+code === 0) {
-        Message.success({ content: msg || '请求成功', duration: 3 });
+        if (showMsg) {
+          Message.success({ content: msg || '请求成功', duration: 3 });
+        }
       } else {
         Message.info({ content: msg || '请求非法', duration: 3 })
       }
