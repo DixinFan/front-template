@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button @click="axiosTest" ghost type="success">测试axios</Button>
+    <span class="default-tip">首页待开发...</span>
   </div>
 </template>
 
@@ -9,15 +9,13 @@
     data() {
       return {}
     },
-    methods: {
-      async axiosTest() {
-        const res = await this.$api.test.hello({});
-        console.log('响应信息', res);
-      }
-    }
+    methods: {}
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+  .default-tip {
+    font-size: 25px;
+    color: red;
+  }
 </style>

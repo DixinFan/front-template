@@ -5,20 +5,15 @@ const GET = 'get';
 
 const apiRegistry = {
   user: {
-    query: { method:  GET, url: '/user/query' }, // 带方法的配置 object
-    add: '/user/add.json',                       // 不带方法的配置 string 默认为post
-    delete: { method: POST, url: '/user/delete.json' }
-  },
-  message: {
-    query: { method:  GET, url: '/message/query' },
-  },
-  test: {
-    hello: '/test/hello.json',
-  },
-  user: {
     login: '/login',
     logout: { method: GET, url: '/logout' },
     load: '/login/success',
+  },
+  userManage: {
+    query: '/manage/user/query.json', // 带方法的配置 object
+    add: '/manage/user/add.json', // 不带方法的配置 string 默认为post
+    delete: '/manage/user/delete.json',
+    update: '/manage/user/update.json',
   }
 }
 
@@ -78,4 +73,6 @@ class Api {
   }
 }
 
-export default new Api().api;
+const API = new Api();
+
+export default API.api;

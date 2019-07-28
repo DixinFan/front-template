@@ -23,7 +23,7 @@ export default [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import('@/view/login/login')
   },
   {
     path: '/',
@@ -48,4 +48,44 @@ export default [
       }
     ]
   },
+  {
+    path: '/app/manage',
+    name: 'appManage',
+    redirect: '/app/manage/user',
+    component: Main,
+    meta: {
+      hideInBread: true,
+      icon: 'md-apps',
+      title: '应用管理'
+    },
+    children: [
+      {
+        path: 'user',
+        name: 'userManage',
+        meta: {
+          icon: 'md-person',
+          title: '用户管理',
+        },
+        component: () => import('@/view/user'),
+      },
+      {
+        path: 'userGroup',
+        name: 'userGroupManage',
+        meta: {
+          icon: 'md-people',
+          title: '用户组管理',
+        },
+        component: () => import('@/view/userGroup'),
+      },
+      {
+        path: 'authority',
+        name: 'authorityManage',
+        meta: {
+          icon: 'md-construct',
+          title: '权限管理',
+        },
+        component: () => import('@/view/authority'),
+      },
+    ]
+  }
 ]

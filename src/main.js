@@ -21,7 +21,6 @@ Vue.use(iView, {
 })
 Vue.use(TreeTable)
 Vue.use(VOrgTree)
-Vue.use(api)
 /**
  * @description 注册admin内置插件
  */
@@ -34,6 +33,10 @@ Vue.config.productionTip = false
  * @description 全局注册应用配置
  */
 Vue.prototype.$config = config
+/**
+ * @description 全局挂载ajax函数
+ */
+Vue.prototype.$api = api
 /**
  * 注册指令
  */

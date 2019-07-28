@@ -1,0 +1,43 @@
+@import "../base/const";
+
+.component {
+  &-filter {
+    padding: 20px;
+    box-shadow:3px 3px 5px #C9C9C9;
+    border-radius: 15px;
+
+    &-container {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    &-button-container {
+      text-align: right;
+
+      .ivu-btn {
+        margin-left: 10px;
+      }
+    }
+
+    &-item {
+      display: flex;
+      width: 320px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      justify-content: space-between;
+      align-items: center;
+
+      .ivu {
+        &-input-wrapper, &-select {
+          width: 250px;
+        }
+      }
+
+      label {
+        font-family: @iview-font-family;
+        font-weight: bold;
+      }
+    }
+  }
+}

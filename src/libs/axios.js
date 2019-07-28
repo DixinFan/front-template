@@ -29,6 +29,9 @@ class HttpRequest {
       } else {
         Message.info({ content: msg || '请求非法', duration: 3 })
       }
+      if (data.hasOwnProperty('total')) {
+        return { data: jsonData, total: data.total }
+      }
       return jsonData;
     }, error => {
       let errorInfo = error.response
