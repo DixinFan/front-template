@@ -56,7 +56,7 @@ export default [
     meta: {
       hideInBread: true,
       icon: 'md-apps',
-      title: '应用管理'
+      title: '系统管理'
     },
     children: [
       {
@@ -68,6 +68,15 @@ export default [
         },
         component: () => import('@/view/system/user'),
       },
+      {
+        path: 'log',
+        name: 'logManager',
+        meta: {
+          icon: 'md-alert',
+          title: '系统日志'
+        },
+        component: () => import('@/view/system/log'),
+      }
     ]
   }
 ]

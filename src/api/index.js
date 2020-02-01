@@ -11,13 +11,16 @@ const apiRegistry = {
   user: {
     login: '/login',
     logout: { method: GET, url: '/logout' },
-    load: '/login/success',
+    load: '/login/load',
     query: '/system/user/query.json',
     add: '/system/user/add.json',
     delete: '/system/user/delete.json',
     update: '/system/user/update.json',
     process: '/system/user/process.json',
   },
+  log: {
+    query: '/system/log/query.json',
+  }
 }
 
 /*

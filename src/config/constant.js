@@ -40,3 +40,17 @@ export const UserRoleMap = {
     BLACK: 2,
     GREY: 3
 }
+
+export const OptionLogType = {
+  1: {name: 'ACCOUNT_STATUS', code: 1, desc: '账号状态'},
+  2: {name: 'USER', code: 2, desc: '用户相关'},
+  3: {name: 'USER_GROUP', code: 3, desc: '用户组相关'},
+  4: {name: 'AUTHORITY', code: 4, desc: '权限相关'},
+}
+
+export const OptionLogTypeMap = {
+  ACCOUNT_STATUS: 1,
+  USER: 2,
+  USER_GROUP: 3,
+  AUTHORITY: 4
+}
