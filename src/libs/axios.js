@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Message } from 'iview';
+import { Message } from 'view-design';
 
 class HttpRequest {
   constructor (baseUrl = baseURL) {

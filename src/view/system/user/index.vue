@@ -20,7 +20,7 @@
                 <div class="complex-component-container">
                     <div class="ivu-input-group-prepend">用户角色</div>
                     <Select v-model="inputData.role">
-                        <Option :value="0">全部</Option>
+                        <Option :value="undefined">全部</Option>
                         <Option v-for="(value, key) in UserRole" :key="`user-role-${key}`" :value="value.code">
                             {{ value.desc }}
                         </Option>
