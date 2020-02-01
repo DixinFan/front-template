@@ -12,15 +12,13 @@ const apiRegistry = {
     login: '/login',
     logout: { method: GET, url: '/logout' },
     load: '/login/success',
+    query: '/system/user/query.json',
+    add: '/system/user/add.json',
+    delete: '/system/user/delete.json',
+    update: '/system/user/update.json',
+    process: '/system/user/process.json',
   },
-  userManage: {
-    query: '/manage/user/query.json',
-    add: '/manage/user/add.json',
-    delete: '/manage/user/delete.json',
-    update: '/manage/user/update.json',
-  }
 }
-
 
 /*
 * axios的基本配置

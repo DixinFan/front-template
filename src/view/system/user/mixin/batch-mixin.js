@@ -62,7 +62,10 @@ export default {
         return;
       }
       const callback = () => {
-        this.$api.sysUser.process({ idList: this.selectedDataIdList, opType: this.batchOpType, value: this.batchOpValue }).then(() => {
+        this.$api.user.process({
+          idList: this.selectedDataIdList,
+          opType: this.batchOpType,
+          value: this.batchOpValue }).then(() => {
           this.doSearch();
         })
       };

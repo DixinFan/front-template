@@ -17,9 +17,10 @@
 
       .ivu-input-group-prepend {
         background-color: white;
-        //border: 1px solid $colorFilterText;
+        border: 1px solid $colorFilterText;
         color: $colorFilterText;
         font-family: $filterLabel;
+        font-size: 12px;
       }
 
       .ivu-input-wrapper {

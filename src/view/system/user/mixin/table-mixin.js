@@ -1,14 +1,14 @@
 // 写在一个文件里实在是太复杂了 找问题也不好找
 // 将查询和数据显示分开来
-import { CommonOptionType, CommonOptionTypeMap, SysUserRole, SysUserRoleMap } from '@/config/constant';
+import { CommonOptionType, CommonOptionTypeMap, UserRole, UserRoleMap } from '@/config/constant';
 import { millisFormatTime } from "@/utils/timeUtil";
 
 export default {
   data() {
     return {
       dataList: [],
-      SysUserRole,
-      SysUserRoleMap
+      UserRole,
+      UserRoleMap
     }
   },
   computed: {
@@ -38,11 +38,12 @@ export default {
     },
     normalTableColumns() {
       const result = [
-        { key: 'username', title: '用户名' },
+        { key: 'name', title: '用户名' },
         { key: 'email', title: '邮箱' },
+        { key: 'phone', title: '手机号' },
         {
           title: '角色',
-          render: (h, { row }) => h('div', this.SysUserRole[row.role].desc),
+          render: (h, { row }) => h('div', this.UserRole[row.role].desc),
         },
         { key: 'description', title: '描述信息' },
         {
@@ -87,6 +88,7 @@ export default {
       ];
       result.forEach(column => {
         column['align'] = 'center';
+        column['tooltip'] = true;
       })
       return result;
     }
@@ -111,7 +113,7 @@ export default {
         return;
       }
       const callback = () => {
-        this.$api.sysUser.delete({ id: data.id }).then(() => {
+        this.$api.user.delete({ id: data.id }).then(() => {
           this.doSearch();
         })
       };

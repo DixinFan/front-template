@@ -2,7 +2,7 @@
     <div class="common-page-container">
         <div class="common-filter-container">
             <div class="common-filter-item">
-                <Input v-model.trim="inputData.username">
+                <Input v-model.trim="inputData.name">
                     <span slot="prepend">用户名</span>
                 </Input>
             </div>
@@ -11,12 +11,17 @@
                     <span slot="prepend">邮箱</span>
                 </Input>
             </div>
+          <div class="common-filter-item">
+            <Input v-model.trim="inputData.phone">
+            <span slot="prepend">手机号</span>
+            </Input>
+          </div>
             <div class="common-filter-item">
                 <div class="complex-component-container">
                     <div class="ivu-input-group-prepend">用户角色</div>
                     <Select v-model="inputData.role">
                         <Option :value="0">全部</Option>
-                        <Option v-for="(value, key) in SysUserRole" :key="`user-role-${key}`" :value="value.code">
+                        <Option v-for="(value, key) in UserRole" :key="`user-role-${key}`" :value="value.code">
                             {{ value.desc }}
                         </Option>
                     </Select>
@@ -36,7 +41,7 @@
                 </Select>
                 <template>
                     <Select v-model="batchOpValue" class="normal-ivu-select margin-left-5" v-if="showBatchOptionValue(opType.role.code)">
-                        <Option v-for="(value, key) in SysUserRole" :key="`user-role-${key}`" :value="value.code">{{ value.desc }}</Option>
+                        <Option v-for="(value, key) in UserRole" :key="`user-role-${key}`" :value="value.code">{{ value.desc }}</Option>
                     </Select>
                 </template>
             </div>
@@ -70,9 +75,10 @@
     methods: {
       getDefaultQueryData() {
         return {
-          username: '',
+          name: '',
           email: '',
-          role: 0,
+          role: '',
+          phone: '',
         };
       },
       getSearchData() {
@@ -85,7 +91,7 @@
         return searchData;
       },
       async fetchList() {
-        const res = await this.$api.sysUser.query(this.searchData);
+        const res = await this.$api.user.query(this.searchData);
         const { data = [], total = 0, code = 0 } = res;
         if (+code === 0) {
           this.dataList = data || [];

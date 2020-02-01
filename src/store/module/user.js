@@ -1,14 +1,8 @@
 import api from '@/api';
-import Qs from 'qs';
 
 export default {
   state: {
     userInfo: '',
-    unreadCount: 0,
-    messageUnreadList: [],
-    messageReadedList: [],
-    messageTrashList: [],
-    messageContentStore: {}
   },
   getters: {
     hasGetInfo(state) {
@@ -16,7 +10,7 @@ export default {
     },
     access(state) {
       if (state.userInfo) {
-        return state.userInfo.accessList || [];
+        return state.userInfo.menuAccessSet || [];
       }
       return [];
     }
@@ -25,27 +19,6 @@ export default {
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo;
     },
-    setMessageCount(state, count) {
-      state.unreadCount = count
-    },
-    setMessageUnreadList(state, list) {
-      state.messageUnreadList = list
-    },
-    setMessageReadedList(state, list) {
-      state.messageReadedList = list
-    },
-    setMessageTrashList(state, list) {
-      state.messageTrashList = list
-    },
-    updateMessageContentStore(state, {msg_id, content}) {
-      state.messageContentStore[msg_id] = content
-    },
-    moveMsg(state, {from, to, msg_id}) {
-      const index = state[from].findIndex(_ => _.msg_id === msg_id)
-      const msgItem = state[from].splice(index, 1)[0]
-      msgItem.loading = false
-      state[to].unshift(msgItem)
-    }
   },
   actions: {
     loadUserInfo({state, commit}) {

@@ -15,9 +15,10 @@ export default {
         create: true,
         show: false,
         form: {
-          id: 0,
-          usrename: '',
+          id: '',
+          name: '',
           email: '',
+          phone: '',
           role: '',
           description: '',
         },
