@@ -1,0 +1,21 @@
+@import "../modules/_variables";
+
+.nhids {
+  &-table-container {
+    .ivu-table-wrapper {
+      border: none;
+      border-radius: 6px 6px 0 0;
+      box-shadow: rgba(0,0,0,.2) 0 1px 5px 0px;
+
+      table {
+        thead {
+          tr {
+            th {
+              background-color: rgba(45,183,245, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}

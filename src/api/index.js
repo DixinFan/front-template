@@ -3,6 +3,10 @@ import axios from '@/libs/api.request'
 const POST = 'post';
 const GET = 'get';
 
+/**
+ * 指定method需要配置为object
+ * 不指定method则只需要注册为string，默认为post请求
+ * **/
 const apiRegistry = {
   user: {
     login: '/login',
@@ -10,8 +14,8 @@ const apiRegistry = {
     load: '/login/success',
   },
   userManage: {
-    query: '/manage/user/query.json', // 带方法的配置 object
-    add: '/manage/user/add.json', // 不带方法的配置 string 默认为post
+    query: '/manage/user/query.json',
+    add: '/manage/user/add.json',
     delete: '/manage/user/delete.json',
     update: '/manage/user/update.json',
   }
@@ -36,6 +40,9 @@ const processModuleConfigDetail = (moduleConfigDetail) => {
   } else {
     Object.assign(baseConfig, moduleConfigDetail);
   }
+  /**
+   * 第二个参数config可以用来手动进行ajax配置，比如添加request-header
+   * **/
   return (form, config = {}) => {
     const realConfig = Object.assign({}, baseConfig, config);
     if (realConfig.method === POST) {

@@ -1,0 +1,54 @@
+.small-ivu-select {
+  width: 100px;
+}
+
+.normal-ivu-select {
+  width: 180px;
+}
+
+.large-ivu-select {
+  width: 250px;
+}
+
+.margin-right-5 {
+  margin-right: 5px;
+}
+
+
+.margin-left-5 {
+  margin-left: 5px;
+}
+
+@mixin box-shadow {
+  box-shadow: rgba(0,0,0,.2) 0 1px 5px 0px;
+}
+
+@mixin border-radius {
+  border-radius: 10px;
+}
+
+.normal-box-shadow {
+  @include box-shadow;
+}
+
+
+.common-chart-container {
+  background: white;
+  @include box-shadow;
+  @include border-radius;
+  padding: 20px;
+  min-height: 380px;
+}
+
+.ivu-select {
+  .ivu-select-selection {
+    .ivu-tag {
+      background-color: #eef7f2;
+
+      .ivu-icon-ios-close {
+        color: $red;
+        font-weight: bolder;
+      }
+    }
+  }
+}

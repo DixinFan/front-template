@@ -1,4 +1,5 @@
 import api from '@/api';
+import Qs from 'qs';
 
 export default {
   state: {
@@ -67,13 +68,15 @@ export default {
     // 登录
     handleLogin({commit}, {username, password}) {
       return  new Promise((resolve, reject) => {
-        api.user.login({}, {params: {username, password}}).then((data) => {
+        api.user.login({}, { params: { username, password } }).then((data) => {
           if (!data) {
             commit('setUserInfo', '');
-            return reject();
+            return reject("用户信息为空");
           }
           commit('setUserInfo', data);
-          resolve();
+          return resolve();
+        }).catch(error => {
+          return reject(error);
         })
       })
     },

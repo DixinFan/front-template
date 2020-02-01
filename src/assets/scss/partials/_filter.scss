@@ -1,0 +1,66 @@
+@import "../modules/_variables";
+
+.common-page-container {
+  padding: 5px;
+
+  .common-filter {
+    &-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    &-item {
+      width: 300px;
+      margin: 5px 0;
+
+      .ivu-input-group-prepend {
+        background-color: white;
+        //border: 1px solid $colorFilterText;
+        color: $colorFilterText;
+        font-family: $filterLabel;
+      }
+
+      .ivu-input-wrapper {
+        width: 250px;
+      }
+
+      .complex-component-container {
+        width: 250px;
+        display: table;
+
+        .ivu-select {
+          float: left;
+          position: relative;
+          width: 100%;
+
+          &-selection {
+            border-radius: 0 4px 4px 0;
+          }
+        }
+      }
+    }
+  }
+
+
+  .common-option-container {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+
+    .ivu-btn {
+      margin-right: 10px;
+    }
+  }
+
+  .common-content-container {
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  .common-batch-option-container {
+    text-align: left;
+    margin: 0 0 10px;
+  }
+}

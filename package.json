@@ -22,10 +22,12 @@
     "iview-area": "^1.5.17",
     "js-cookie": "^2.2.0",
     "moment": "^2.24.0",
+    "qs": "^6.9.1",
     "simplemde": "^1.11.2",
     "sortablejs": "^1.7.0",
     "tree-table-vue": "^1.1.0",
     "v-org-tree": "^1.0.6",
+    "validator": "^12.2.0",
     "vue": "^2.5.10",
     "vue-i18n": "^7.8.0",
     "vue-router": "^3.0.1",
@@ -47,6 +49,8 @@
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.5.13"
   },
   "browserslist": [

@@ -12,20 +12,21 @@
   }
 </script>
 
-<style lang="less">
-  .size {
+<style lang="scss">
+  @import './assets/scss/partials/common';
+  @mixin _size {
     width: 100%;
     height: 100%;
   }
 
   html, body {
-    .size;
+    @include _size;
     overflow: hidden;
     margin: 0;
     padding: 0;
   }
 
   #app {
-    .size;
+    @include _size;
   }
 </style>

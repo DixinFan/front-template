@@ -15,7 +15,7 @@ const LOGIN_PAGE_NAME = 'login'
 
 const turnTo = (to, access, next) => {
   if (canTurnTo(to.name, access, routes)) next() // 有权限，可访问
-  else next({replace: true, name: 'home'}) // 无权限，重定向到401页面
+  else next({replace: true, name: 'home'}) // 无权限，重定向到主页面
 }
 
 router.beforeEach((to, from, next) => {
