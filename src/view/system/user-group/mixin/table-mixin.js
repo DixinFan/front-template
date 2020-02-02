@@ -1,14 +1,12 @@
 // 写在一个文件里实在是太复杂了 找问题也不好找
 // 将查询和数据显示分开来
-import { CommonOptionType, CommonOptionTypeMap, UserRole, UserRoleMap } from '@/config/constant';
+import { CommonOptionType, CommonOptionTypeMap } from '@/config/constant';
 import { millisFormatTime } from "@/utils/timeUtil";
 
 export default {
   data() {
     return {
       dataList: [],
-      UserRole,
-      UserRoleMap
     }
   },
   computed: {
@@ -38,14 +36,7 @@ export default {
     },
     normalTableColumns() {
       const result = [
-        { key: 'name', title: '用户名' },
-        { key: 'password', title: '密码' },
-        { key: 'email', title: '邮箱' },
-        { key: 'phone', title: '手机号' },
-        {
-          title: '角色',
-          render: (h, { row }) => h('div', this.UserRole[row.role].desc),
-        },
+        { key: 'name', title: '用户组名' },
         { key: 'description', title: '描述信息' },
         {
           title: '创建时间',
@@ -114,7 +105,7 @@ export default {
         return;
       }
       const callback = () => {
-        this.$api.user.delete({ id: data.id }).then(() => {
+        this.$api.userGroup.delete({ id: data.id }).then(() => {
           this.doSearch();
         })
       };

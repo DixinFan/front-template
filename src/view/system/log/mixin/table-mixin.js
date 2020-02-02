@@ -49,6 +49,8 @@ export default {
           render: (h, { row }) => h('div', this.CommonOptionType[row.optionType].desc),
         },
         { key: 'description', title: '描述信息' },
+        { key: 'preData', title: '变更前' },
+        { key: 'afterData', title: '变更后' },
         {
           title: '创建时间',
           render: (h, { row }) => h('div', millisFormatTime(row.createTime)),

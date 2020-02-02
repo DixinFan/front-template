@@ -17,10 +17,6 @@ export default {
         form: {
           id: '',
           name: '',
-          password: '',
-          email: '',
-          phone: '',
-          role: '',
           description: '',
         },
       }

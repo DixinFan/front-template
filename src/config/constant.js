@@ -54,3 +54,13 @@ export const OptionLogTypeMap = {
   USER_GROUP: 3,
   AUTHORITY: 4
 }
+
+export const AuthorityType = {
+  1: {name: 'URL', code: 1, desc: '请求权限'},
+  2: {name: 'MENU', code: 2, desc: '菜单权限'},
+}
+
+export const AuthorityTypeMap = {
+  URL: 1,
+  MENU: 2
+}

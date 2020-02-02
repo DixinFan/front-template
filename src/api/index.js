@@ -20,6 +20,20 @@ const apiRegistry = {
   },
   log: {
     query: '/system/log/query.json',
+  },
+  userGroup: {
+    query: '/system/userGroup/query.json',
+    add: '/system/userGroup/add.json',
+    delete: '/system/userGroup/delete.json',
+    update: '/system/userGroup/update.json',
+    process: '/system/userGroup/process.json',
+  },
+  authority: {
+    query: '/system/authority/query.json',
+    add: '/system/authority/add.json',
+    delete: '/system/authority/delete.json',
+    update: '/system/authority/update.json',
+    process: '/system/authority/process.json',
   }
 }
 

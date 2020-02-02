@@ -69,6 +69,24 @@ export default [
         component: () => import('@/view/system/user'),
       },
       {
+        path: 'userGroup',
+        name: 'userGroupManage',
+        meta: {
+          icon: 'md-people',
+          title: '用户组管理',
+        },
+        component: () => import('@/view/system/user-group'),
+      },
+      {
+        path: 'authority',
+        name: 'authorityManage',
+        meta: {
+          icon: 'md-settings',
+          title: '权限管理',
+        },
+        component: () => import('@/view/system/authority'),
+      },
+      {
         path: 'log',
         name: 'logManager',
         meta: {
