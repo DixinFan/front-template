@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Modal v-model="showModal" width="600" title="添加用户组到用户">
+    <Modal v-model="showModal" width="600" title="添加用户权限">
       <div class="add-map-container">
         <div class="map-entity-search">
-          <UserGroupSelector v-model="userGroupId" @input-all="selectUserGroup"></UserGroupSelector>
-          <Button @click="addToUserGroupList" type="info" style="margin-left: 20px;">添加</Button>
+          <AuthoritySelector v-model="authorityId" @input-all="selectAuthority"></AuthoritySelector>
+          <Button @click="addToAuthorityList" type="info" style="margin-left: 20px;">添加</Button>
         </div>
         <div class="mapped-entity-list margin-top-5">
-          <Tooltip :content="item.description"  v-for="(item, index) in userGroupList">
-            <Tag :name="index" color="cyan" type="border" closable @on-close="removeFromUserGroupList">
+          <Tooltip :content="item.description"  v-for="(item, index) in authorityList">
+            <Tag :name="index" color="cyan" type="border" closable @on-close="removeFromAuthorityList">
               {{ item.name }}
             </Tag>
           </Tooltip>
-
         </div>
       </div>
       <div class="edit-form-foot" slot="footer">
@@ -24,12 +23,12 @@
 </template>
 
 <script>
-  import UserGroupSelector from '_c/user-group-selector';
+  import AuthoritySelector from '_c/authority-selector';
   import { CommonMapTypeMap } from "@/config/constant";
 
   export default {
     components: {
-      UserGroupSelector
+      AuthoritySelector,
     },
     props: {
       value: {
@@ -41,9 +40,9 @@
       return {
         showModal: false,
         userId: 0,
-        userGroupList: [],
-        userGroup: '',
-        userGroupId: 0,
+        authorityList: [],
+        authority: '',
+        authorityId: 0,
       }
     },
     watch: {
@@ -54,9 +53,9 @@
           this.userId = newValue && newValue.id || 0;
           this.$api.user.query({ id: this.userId }).then(({ data }) => {
             if (data && data.length) {
-              const userGroupList = data[0].userGroupList || [];
-              this.userGroupList = userGroupList.map(userGroup =>
-                ({name: userGroup.name, id: userGroup.id, description: userGroup.description})) || [];
+              const authorityList = data[0].authorityList || [];
+              this.authorityList = authorityList.map(authority =>
+                ({name: authority.name, id: authority.id, description: authority.description})) || [];
             }
           }).catch(error => {
             console.log(error);
@@ -67,9 +66,9 @@
     methods: {
       reset() {
         this.userId = 0;
-        this.userGroupList = [];
-        this.userGroup = '';
-        this.userGroupId = 0;
+        this.authorityList = [];
+        this.authority = '';
+        this.authorityId = 0;
       },
       onCancel() {
         this.showModal = false;
@@ -80,8 +79,8 @@
         }
         // 保存到服务端
         const batchMap = {
-          type: CommonMapTypeMap.USER_MAP_GROUP,
-          secondaryKeyList: this.userGroupList.map(userGroup => userGroup.id) || [],
+          type: CommonMapTypeMap.USER_MAP_AUTHORITY,
+          secondaryKeyList: this.authorityList.map(authority => authority.id) || [],
           primaryKey: this.userId,
         }
         this.$api.commonMap.updateLongLongMap(batchMap).then(() => {
@@ -90,20 +89,20 @@
           console.log(error)
         })
       },
-      selectUserGroup(userGroup) {
-        this.userGroup = userGroup;
+      selectAuthority(authority) {
+        this.authority = authority;
       },
-      addToUserGroupList() {
-        if (this.userGroup && this.userGroup.id) {
-          const { id, name, description } = this.userGroup;
-          const exists = this.userGroupList.find((userGroup) => userGroup.id == id);
+      addToAuthorityList() {
+        if (this.authority && this.authority.id) {
+          const { id, name, description } = this.authority;
+          const exists = this.authorityList.find((authority) => authority.id == id);
           if (!exists) {
-            this.userGroupList.push({ id, name, description })
+            this.authorityList.push({ id, name, description })
           }
         }
       },
-      removeFromUserGroupList(index) {
-        this.userGroupList.splice(index, 1);
+      removeFromAuthorityList(index) {
+        this.authorityList.splice(index, 1);
       }
     }
   }

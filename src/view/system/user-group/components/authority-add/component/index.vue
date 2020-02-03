@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Modal v-model="showModal" width="600" title="添加用户到用户组">
+    <Modal v-model="showModal" width="600" title="添加用户权限">
       <div class="add-map-container">
         <div class="map-entity-search">
-          <UserSelector v-model="userId" @input-all="selectUser"></UserSelector>
-          <Button @click="addToUserList" type="info" style="margin-left: 20px;">添加</Button>
+          <AuthoritySelector v-model="authorityId" @input-all="selectAuthority"></AuthoritySelector>
+          <Button @click="addToAuthorityList" type="info" style="margin-left: 20px;">添加</Button>
         </div>
         <div class="mapped-entity-list margin-top-5">
-          <Tooltip :content="item.description"  v-for="(item, index) in userList">
-            <Tag :name="index" color="cyan" type="border" closable @on-close="removeFromUserList">
+          <Tooltip :content="item.description"  v-for="(item, index) in authorityList">
+            <Tag :name="index" color="cyan" type="border" closable @on-close="removeFromAuthorityList">
               {{ item.name }}
             </Tag>
           </Tooltip>
-
         </div>
       </div>
       <div class="edit-form-foot" slot="footer">
@@ -24,12 +23,12 @@
 </template>
 
 <script>
-  import UserSelector from '_c/user-selector';
+  import AuthoritySelector from '_c/authority-selector';
   import { CommonMapTypeMap } from "@/config/constant";
 
   export default {
     components: {
-      UserSelector
+      AuthoritySelector,
     },
     props: {
       value: {
@@ -41,9 +40,9 @@
       return {
         showModal: false,
         userGroupId: 0,
-        userList: [],
-        user: '',
-        userId: 0,
+        authorityList: [],
+        authority: '',
+        authorityId: 0,
       }
     },
     watch: {
@@ -54,9 +53,9 @@
           this.userGroupId = newValue && newValue.id || 0;
           this.$api.userGroup.query({ id: this.userGroupId }).then(({ data }) => {
             if (data && data.length) {
-              const userList = data[0].userList || [];
-              this.userList = userList.map(user =>
-                ({name: user.name, id: user.id, description: user.description})) || [];
+              const authorityList = data[0].authorityList || [];
+              this.authorityList = authorityList.map(authority =>
+                ({name: authority.name, id: authority.id, description: authority.description})) || [];
             }
           }).catch(error => {
             console.log(error);
@@ -67,9 +66,9 @@
     methods: {
       reset() {
         this.userGroupId = 0;
-        this.userList = [];
-        this.user = '';
-        this.userId = 0;
+        this.authorityList = [];
+        this.authority = '';
+        this.authorityId = 0;
       },
       onCancel() {
         this.showModal = false;
@@ -80,9 +79,9 @@
         }
         // 保存到服务端
         const batchMap = {
-          type: CommonMapTypeMap.USER_MAP_GROUP,
-          primaryKeyList: this.userList.map(user => user.id) || [],
-          secondaryKey: this.userGroupId,
+          type: CommonMapTypeMap.GROUP_MAP_AUTHORITY,
+          secondaryKeyList: this.authorityList.map(authority => authority.id) || [],
+          primaryKey: this.userGroupId,
         }
         this.$api.commonMap.updateLongLongMap(batchMap).then(() => {
           this.showModal = false;
@@ -90,20 +89,20 @@
           console.log(error)
         })
       },
-      selectUser(user) {
-        this.user = user;
+      selectAuthority(authority) {
+        this.authority = authority;
       },
-      addToUserList() {
-        if (this.user && this.user.id) {
-          const { id, name, description } = this.user;
-          const exists = this.userList.find((user) => user.id == id);
+      addToAuthorityList() {
+        if (this.authority && this.authority.id) {
+          const { id, name, description } = this.authority;
+          const exists = this.authorityList.find((authority) => authority.id == id);
           if (!exists) {
-            this.userList.push({ id, name, description })
+            this.authorityList.push({ id, name, description })
           }
         }
       },
-      removeFromUserList(index) {
-        this.userList.splice(index, 1);
+      removeFromAuthorityList(index) {
+        this.authorityList.splice(index, 1);
       }
     }
   }

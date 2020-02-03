@@ -57,6 +57,7 @@
     </div>
     <EditItem :value="editProps" @edit-success="reset"></EditItem>
     <UserGroupAdd :value="userGroupAddProps"></UserGroupAdd>
+    <AuthorityAdd :value="authorityAddProps"></AuthorityAdd>
   </div>
 </template>
 
@@ -67,10 +68,12 @@
   import batchMixin from "./mixin/batch-mixin";
   import editMixin from "./edit-item/edit-mixin";
   import userGroupAddMixin from './components/user-group-add/user-group-add-mixin';
+  import authorityAddMixin from './components/authority-add/authority-add-mixin';
 
 
   export default {
-    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin, userGroupAddMixin],
+    mixins: [pageMixin, tableMixin, batchMixin,
+      optionMixin, editMixin, userGroupAddMixin, authorityAddMixin],
     data() {
       return {
         inputData: this.getDefaultQueryData(),

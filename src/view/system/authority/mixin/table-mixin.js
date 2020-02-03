@@ -60,7 +60,7 @@ export default {
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
               },
               style: {
-                marginRight: '5px',
+                marginRight: '3px',
                 marginTop: '3px',
                 marginBottom: '3px',
               },

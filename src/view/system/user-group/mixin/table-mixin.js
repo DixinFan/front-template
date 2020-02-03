@@ -56,7 +56,7 @@ export default {
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
               },
               style: {
-                marginRight: '5px',
+                marginRight: '3px',
                 marginTop: '3px',
                 marginBottom: '3px',
               },
@@ -73,7 +73,7 @@ export default {
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
               },
               style: {
-                marginRight: '5px',
+                marginRight: '3px',
                 marginTop: '3px',
                 marginBottom: '3px',
               },
@@ -81,6 +81,23 @@ export default {
                 click: () => this.singleOption(index, CommonOptionTypeMap.DELETE),
               }
             }, '删除');
+            const addAuthorityBtn = h('Button', {
+              props: {
+                type: 'success',
+                size: 'small',
+                disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
+              },
+              style: {
+                marginRight: '3px',
+                marginTop: '3px',
+                marginBottom: '3px',
+              },
+              on: {
+                click: () => {
+                  this.addAuthority(index)
+                },
+              }
+            }, '添加权限');
             const addUserBtn = h('Button', {
               props: {
                 type: 'success',
@@ -97,7 +114,7 @@ export default {
                 },
               }
             }, '添加用户');
-            return h('div', [updateBtn, deleteBtn, addUserBtn]);
+            return h('div', [updateBtn, deleteBtn, addAuthorityBtn, addUserBtn]);
           }
         },
       ];

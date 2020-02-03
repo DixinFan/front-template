@@ -1,18 +1,18 @@
 <template>
-    <div class="common-page-container">
-      <div class="common-filter-container">
-        <div class="common-filter-item">
-          <Input v-model.trim="inputData.name">
-          <span slot="prepend">用户组名</span>
-          </Input>
-        </div>
-        <div class="common-filter-item">
-          <Input v-model.trim="inputData.description">
-          <span slot="prepend">描述</span>
-          </Input>
-        </div>
+  <div class="common-page-container">
+    <div class="common-filter-container">
+      <div class="common-filter-item">
+        <Input v-model.trim="inputData.name">
+        <span slot="prepend">用户组名</span>
+        </Input>
       </div>
-      <div class="common-option-container">
+      <div class="common-filter-item">
+        <Input v-model.trim="inputData.description">
+        <span slot="prepend">描述</span>
+        </Input>
+      </div>
+    </div>
+    <div class="common-option-container">
       <Button @click="reset" type="info" icon="md-refresh">重置</Button>
       <Button @click="doSearch" type="primary" icon="md-search">搜索</Button>
       <Button @click="addData" type="success" icon="md-add">添加</Button>
@@ -34,6 +34,7 @@
     </div>
     <EditItem :value="editProps" @edit-success="reset"></EditItem>
     <UserAdd :value="userAddProps"></UserAdd>
+    <AuthorityAdd :value="authorityAddProps"></AuthorityAdd>
   </div>
 </template>
 
@@ -44,9 +45,12 @@
   import batchMixin from "./mixin/batch-mixin";
   import editMixin from "./edit-item/edit-mixin";
   import userAddMixin from './components/user-add/user-add-mixin';
+  import authorityAddMixin from './components/authority-add/authority-add-mixin';
+
 
   export default {
-    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin, userAddMixin],
+    mixins: [pageMixin, tableMixin, batchMixin,
+      optionMixin, editMixin, userAddMixin, authorityAddMixin],
     data() {
       return {
         inputData: this.getDefaultQueryData(),

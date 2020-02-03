@@ -1,7 +1,7 @@
 /** 翻页器使用的 */
 
 const PAGE_START = 1;
-const DEFAULT_PAGE_SIZE = 20;
+const DEFAULT_PAGE_SIZE = 10;
 
 export default {
   data() {
