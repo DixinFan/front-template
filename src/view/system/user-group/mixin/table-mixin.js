@@ -57,6 +57,8 @@ export default {
               },
               style: {
                 marginRight: '5px',
+                marginTop: '3px',
+                marginBottom: '3px',
               },
               on: {
                 click: () => {
@@ -72,6 +74,8 @@ export default {
               },
               style: {
                 marginRight: '5px',
+                marginTop: '3px',
+                marginBottom: '3px',
               },
               on: {
                 click: () => this.singleOption(index, CommonOptionTypeMap.DELETE),
@@ -82,6 +86,10 @@ export default {
                 type: 'success',
                 size: 'small',
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
+              },
+              style: {
+                marginTop: '3px',
+                marginBottom: '3px',
               },
               on: {
                 click: () => {

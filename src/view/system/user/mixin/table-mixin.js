@@ -66,6 +66,8 @@ export default {
               },
               style: {
                 marginRight: '5px',
+                marginTop: '3px',
+                marginBottom: '3px',
               },
               on: {
                 click: () => {
@@ -79,11 +81,32 @@ export default {
                 size: 'small',
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
               },
+              style: {
+                marginRight: '5px',
+                marginTop: '3px',
+                marginBottom: '3px',
+              },
               on: {
                 click: () => this.singleOption(index, CommonOptionTypeMap.DELETE),
               }
             }, '删除');
-            return h('div', [updateBtn, deleteBtn]);
+            const addUserGroupBtn = h('Button', {
+              props: {
+                type: 'success',
+                size: 'small',
+                disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
+              },
+              style: {
+                marginTop: '3px',
+                marginBottom: '3px',
+              },
+              on: {
+                click: () => {
+                  this.addUserGroup(index)
+                },
+              }
+            }, '添加用户组');
+            return h('div', [updateBtn, deleteBtn, addUserGroupBtn]);
           }
         },
       ];

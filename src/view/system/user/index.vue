@@ -56,6 +56,7 @@
             @on-change="jumpPage" style="margin-top: 15px;"></Page>
     </div>
     <EditItem :value="editProps" @edit-success="reset"></EditItem>
+    <UserGroupAdd :value="userGroupAddProps"></UserGroupAdd>
   </div>
 </template>
 
@@ -65,9 +66,11 @@
   import tableMixin from "./mixin/table-mixin";
   import batchMixin from "./mixin/batch-mixin";
   import editMixin from "./edit-item/edit-mixin";
+  import userGroupAddMixin from './components/user-group-add/user-group-add-mixin';
+
 
   export default {
-    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin],
+    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin, userGroupAddMixin],
     data() {
       return {
         inputData: this.getDefaultQueryData(),
