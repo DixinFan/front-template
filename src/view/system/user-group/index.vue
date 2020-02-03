@@ -33,6 +33,7 @@
             @on-change="jumpPage" style="margin-top: 15px;"></Page>
     </div>
     <EditItem :value="editProps" @edit-success="reset"></EditItem>
+    <UserAdd :value="userAddProps"></UserAdd>
   </div>
 </template>
 
@@ -42,9 +43,10 @@
   import tableMixin from "./mixin/table-mixin";
   import batchMixin from "./mixin/batch-mixin";
   import editMixin from "./edit-item/edit-mixin";
+  import userAddMixin from './components/user-add/user-add-mixin';
 
   export default {
-    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin],
+    mixins: [pageMixin, tableMixin, batchMixin, optionMixin, editMixin, userAddMixin],
     data() {
       return {
         inputData: this.getDefaultQueryData(),

@@ -64,3 +64,15 @@ export const AuthorityTypeMap = {
   URL: 1,
   MENU: 2
 }
+
+export const CommonMapType = {
+  1: {name: 'USER_MAP_GROUP', code: 1, desc: '用户和用户组映射'},
+  2: {name: 'USER_MAP_AUTHORITY', code: 2, desc: '用户和权限映射'},
+  3: {name: 'GROUP_MAP_AUTHORITY', code: 3, desc: '用户组和权限映射'},
+}
+
+export const CommonMapTypeMap = {
+  USER_MAP_GROUP: 1,
+  USER_MAP_AUTHORITY: 2,
+  GROUP_MAP_AUTHORITY: 3
+}

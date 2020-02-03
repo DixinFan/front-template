@@ -70,11 +70,26 @@ export default {
                 size: 'small',
                 disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
               },
+              style: {
+                marginRight: '5px',
+              },
               on: {
                 click: () => this.singleOption(index, CommonOptionTypeMap.DELETE),
               }
             }, '删除');
-            return h('div', [updateBtn, deleteBtn]);
+            const addUserBtn = h('Button', {
+              props: {
+                type: 'success',
+                size: 'small',
+                disabled: this.hasAuthority ? !this.hasAuthority(index) : false,
+              },
+              on: {
+                click: () => {
+                  this.addUser(index)
+                },
+              }
+            }, '添加用户');
+            return h('div', [updateBtn, deleteBtn, addUserBtn]);
           }
         },
       ];

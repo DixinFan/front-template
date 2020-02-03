@@ -43,7 +43,11 @@ class HttpRequest {
           request: { responseURL: config.url }
         }
       }
-      Message.error({ content: '服务器异常', duration: 3 });
+      if (errorInfo.status == 403) {
+        Message.error({ content: '禁止访问', duration: 3 });
+      } else {
+        Message.error({ content: '服务器异常', duration: 3 });
+      }
       console.log('Error: ', error);
       return Promise.reject(error)
     })

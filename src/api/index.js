@@ -34,6 +34,9 @@ const apiRegistry = {
     delete: '/system/authority/delete.json',
     update: '/system/authority/update.json',
     process: '/system/authority/process.json',
+  },
+  commonMap: {
+    updateLongLongMap: '/system/map/long/long/update.json',
   }
 }
 
